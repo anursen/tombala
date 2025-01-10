@@ -4,9 +4,14 @@ import random
 import time
 from dataclasses import dataclass
 from typing import List, Set, Dict
+from os import environ
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secret!'
+app.config['SECRET_KEY'] = environ.get('SECRET_KEY', 'fallback-secret-key-for-development')
 socketio = SocketIO(app, cors_allowed_origins="*")
 
 @dataclass
@@ -184,4 +189,8 @@ def index():
 socketio.on_namespace(GameNamespace('/'))
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True, host='0.0.0.0', allow_unsafe_werkzeug=True)
+    socketio.run(app, 
+                 debug=True, 
+                 host='0.0.0.0',
+                 allow_unsafe_werkzeug=True,
+                 cors_allowed_origins="*")

@@ -51,6 +51,32 @@ python app.py
 http://localhost:5000
 ```
 
+## Docker Support
+
+### Using Docker Compose (Recommended)
+
+1. Build and run the application:
+```bash
+docker-compose up --build
+```
+
+2. Access the application at:
+```
+http://localhost:5000
+```
+
+### Using Docker directly
+
+1. Build the image:
+```bash
+docker build -t tombala-game .
+```
+
+2. Run the container:
+```bash
+docker run -p 5000:5000 tombala-game
+```
+
 ## Game Rules
 
 - Each player receives a unique board with 15 numbers
