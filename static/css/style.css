@@ -1,0 +1,281 @@
+:root {
+    --primary-color: #2196F3;
+    --secondary-color: #ff9800;
+    --bg-color: #f5f5f5;
+    --board-color: #ffffff;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--bg-color);
+    margin: 0;
+    padding: 20px;
+}
+
+.game-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+.game-board {
+    background: var(--board-color);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.board-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.board-table td {
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.board-table td.marked {
+    background: linear-gradient(145deg, #4CAF50, #45a049);
+    color: white;
+    transform: scale(0.95);
+    box-shadow: inset 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+.game-info {
+    background: var(--board-color);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.current-number {
+    font-size: 48px;
+    text-align: center;
+    color: var(--primary-color);
+    margin: 20px 0;
+}
+
+.drawn-numbers {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 8px;
+    padding: 10px;
+    background: rgba(0,0,0,0.05);
+    border-radius: 8px;
+    margin: 10px 0;
+}
+
+.number-ball {
+    background: linear-gradient(145deg, var(--secondary-color), #f57c00);
+    color: white;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    animation: popIn 0.3s ease-out;
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.control-panel {
+    margin-top: 20px;
+    text-align: center;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    margin: 5px;
+}
+
+button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+button.ready {
+    background-color: #4CAF50;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.players-list {
+    margin-top: 20px;
+}
+
+.player-card {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    margin: 10px 0;
+    background: #fff;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.player-card.winner {
+    background: linear-gradient(145deg, #4CAF50, #45a049);
+    color: white;
+    transform: scale(1.05);
+    border-left: 4px solid gold;
+}
+
+.player-achievements {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 5px;
+}
+
+.achievement {
+    background: linear-gradient(145deg, var(--secondary-color), #f57c00);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    animation: slideIn 0.3s ease-out;
+}
+
+.player-card.winner .achievement {
+    background: gold;
+    color: #333;
+}
+
+.player-name {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.player-score {
+    color: var(--secondary-color);
+}
+
+.game-status {
+    text-align: center;
+    font-size: 20px;
+    margin: 10px 0;
+    color: var(--primary-color);
+}
+
+.board-number {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.board-number.marked::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(76, 175, 80, 0.8);
+    border-radius: 8px;
+    animation: markNumber 0.3s ease-out;
+}
+
+@keyframes markNumber {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.number-bucket-container {
+    margin: 20px 0;
+    padding: 15px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.number-bucket {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.bucket-row {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+.bucket-number {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #f0f0f0, #e0e0e0);
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.bucket-number.drawn {
+    background: linear-gradient(145deg, #4CAF50, #45a049);
+    color: white;
+    transform: scale(0.9);
+    box-shadow: inset 2px 2px 5px rgba(0,0,0,0.2);
+}

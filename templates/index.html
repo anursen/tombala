@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Tombala Game</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-board">
+            <div class="control-panel">
+                <button id="joinGameBtn" disabled>Join Game</button>
+                <button id="startGameBtn" disabled>Start Game</button>
+            </div>
+            
+            <div class="current-number"></div>
+            <table class="board-table" id="playerBoard"></table>
+            
+            <div class="game-status"></div>
+        </div>
+
+        <div class="game-info">
+            <h2>Game Information</h2>
+            <div class="number-bucket-container">
+                <h3>Number Bucket</h3>
+                <div class="number-bucket" id="numberBucket"></div>
+            </div>
+            
+            <div class="players-list">
+                <h3>Players</h3>
+                <div id="playersList"></div>
+            </div>
+
+            <div class="winning-conditions">
+                <h3>Win by completing:</h3>
+                <ul>
+                    <li>One Row (Çinko)</li>
+                    <li>Two Rows (İkinci Çinko)</li>
+                    <li>Full Board (Tombala)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/game.js') }}"></script>
+</body>
+</html>
